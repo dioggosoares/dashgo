@@ -2,8 +2,8 @@ import { theme } from '@chakra-ui/react'
 import { ApexOptions } from 'apexcharts'
 
 export const series = [
-  { name: 'series1', data: [31, 150, 10, 48, 80, 18, 130] },
-  // { name: 'series2', data: [11, 100, 20, 60, 80, 48, 130] },
+  { name: 'series1', data: [31, 150, 10, 48, 80, 0, 0] },
+  // { name: 'series2', data: [31, 150, 10, 48, 80, 18, 130] },
 ]
 
 export const options: ApexOptions = {

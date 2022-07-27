@@ -20,13 +20,14 @@ import {
   useBreakpointValue,
 } from '@chakra-ui/react'
 
-import { useUsers } from '../../services/hooks/users/useUsers'
+import { getUsers, useUsers } from '../../services/hooks/users/useUsers'
 import { queryClient } from '../../services/queryClient'
 import { api } from '../../services/api'
 
 import { Header } from '../../components/Header'
 import { Pagination } from '../../components/Pagination'
 import { Sidebar } from '../../components/Sidebar'
+import { GetServerSideProps } from 'next'
 
 export default function UserList() {
   const [page, setPage] = useState(1)
@@ -46,7 +47,7 @@ export default function UserList() {
         return response.data
       },
       {
-        staleTime: 1000 * 60 * 10, // 10 minutos
+        staleTime: 1000 * 60 * 10, // 10 minutes
       },
     )
   }
@@ -102,7 +103,7 @@ export default function UserList() {
                   </Tr>
                 </Thead>
                 <Tbody>
-                  {data.users.map((user) => {
+                  {data?.users.map((user) => {
                     return (
                       <Tr key={user.id}>
                         <Td px={['4', '4', '6']}>
@@ -121,7 +122,7 @@ export default function UserList() {
                             </Text>
                           </Box>
                         </Td>
-                        {isWideVersion && <Td>{user.createdAt}</Td>}
+                        {isWideVersion && <Td>{user.created_at}</Td>}
                         <Td>
                           <Button
                             size="sm"
@@ -145,7 +146,9 @@ export default function UserList() {
               </Table>
 
               <Pagination
-                totalCountOfRegisters={data.totalCount}
+                totalCountOfRegisters={
+                  data?.totalCount === undefined ? 0 : data.totalCount
+                }
                 currentPage={page}
                 onPageChange={setPage}
               />
@@ -155,4 +158,12 @@ export default function UserList() {
       </Flex>
     </Box>
   )
+}
+
+export const getServerSideProps: GetServerSideProps = async () => {
+  // const { users, totalCount } = await getUsers(1)
+
+  return {
+    props: {},
+  }
 }

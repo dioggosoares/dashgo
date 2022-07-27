@@ -1,20 +1,9 @@
 import { useQuery } from '@tanstack/react-query'
+import { GetUsersResponse, User } from '../../../@types/UserType'
 
 import { api } from '../../api'
 
-interface User {
-  id: string
-  name: string
-  email: string
-  createdAt: string
-}
-
-type GetUserResponse = {
-  totalCount: number
-  users: User[]
-}
-
-export async function getUsers(page: number): Promise<GetUserResponse> {
+export async function getUsers(page: number): Promise<GetUsersResponse> {
   const { data, headers } = await api.get('users', {
     params: {
       page,
@@ -28,7 +17,7 @@ export async function getUsers(page: number): Promise<GetUserResponse> {
       id: user.id,
       name: user.name,
       email: user.email,
-      createdAt: new Date(user.createdAt).toLocaleDateString('pt-BR', {
+      created_at: new Date(user.created_at).toLocaleDateString('pt-BR', {
         day: '2-digit',
         month: 'long',
         year: 'numeric',
@@ -44,6 +33,6 @@ export async function getUsers(page: number): Promise<GetUserResponse> {
 
 export function useUsers(page: number) {
   return useQuery(['users', page], () => getUsers(page), {
-    staleTime: 1000 * 60 * 10, // 10 minutos
+    staleTime: 1000 * 60 * 10, // 10 minutes
   })
 }

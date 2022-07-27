@@ -7,11 +7,7 @@ import {
 } from 'miragejs'
 import { faker } from '@faker-js/faker'
 
-type User = {
-  name: string
-  email: string
-  created_at: string
-}
+import { User } from '../../@types/UserType'
 
 export function makeServer() {
   const server = createServer({
@@ -53,10 +49,13 @@ export function makeServer() {
         const pageStart = (Number(page) - 1) * Number(perPage)
         const pageEnd = pageStart + Number(perPage)
 
-        const users = this.serialize(schema.all('user')).users.slice(
-          pageStart,
-          pageEnd,
-        )
+        const users = this.serialize(schema.all('user'))
+          .users.sort(
+            (a: User, b: User) =>
+              new Date(b.created_at).getTime() -
+              new Date(a.created_at).getTime(),
+          )
+          .slice(pageStart, pageEnd)
 
         return new Response(200, { 'x-total-count': String(total) }, { users })
       })
