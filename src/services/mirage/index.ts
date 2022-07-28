@@ -28,13 +28,13 @@ export function makeServer() {
           return faker.internet.email().toLowerCase()
         },
         createdAt() {
-          return faker.date.recent(10)
+          return faker.date.recent(5)
         },
       }),
     },
 
     seeds(server) {
-      server.createList('user', 200)
+      server.createList('user', 100)
     },
 
     routes() {
@@ -42,7 +42,7 @@ export function makeServer() {
       this.timing = 750
 
       this.get('/users', function (schema, request) {
-        const { page = 1, perPage = 10 } = request.queryParams
+        const { page = 1, perPage = 5 } = request.queryParams
 
         const total = schema.all('user').length
 
