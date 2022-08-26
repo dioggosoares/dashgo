@@ -5,8 +5,7 @@
 
 ## 📄 Descrição
 
-Projeto desenvolvido com intuito de criar um dashboard de usuários cadastrados e outras funcionalidades para fins de estudo.
-Projeto feito com ReactJS, NextJS, Tanstack Query (antigo ReactQuery), ChakraUI, Miragejs
+Projeto desenvolvido com intuito de criar um dashboard de usuários cadastrados e outras funcionalidades para fins de estudo, feito com ReactJS, NextJS, Tanstack Query (antigo ReactQuery), ChakraUI, Miragejs
 
 ## 🛠 Technologies
 
