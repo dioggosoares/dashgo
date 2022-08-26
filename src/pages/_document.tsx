@@ -11,6 +11,7 @@ export default class MyDocument extends Document {
             href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Ubuntu:wght@300;400;700&display=swap"
             rel="stylesheet"
           />
+          <title>Dashgo.</title>
         </Head>
         <body>
           <Main />
