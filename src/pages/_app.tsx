@@ -10,6 +10,7 @@ import { queryClient } from '../services/queryClient'
 
 import { theme } from '../styles/theme'
 import '../styles/global.scss'
+import Head from 'next/head'
 
 if (process.env.NODE_ENV === 'development') {
   makeServer()
@@ -20,6 +21,9 @@ function MyApp({ Component, pageProps }: AppProps) {
     <QueryClientProvider client={queryClient}>
       <ChakraProvider theme={theme}>
         <SidebarDrawerProvider>
+          <Head>
+            <title>Dashgo.</title>
+          </Head>
           <Component {...pageProps} />
         </SidebarDrawerProvider>
       </ChakraProvider>
