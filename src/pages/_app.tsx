@@ -12,7 +12,7 @@ import { theme } from '../styles/theme'
 import '../styles/global.scss'
 import Head from 'next/head'
 
-if (process.env.NODE_ENV === 'development') {
+if (process.env.NODE_ENV === 'development' || 'production') {
   makeServer()
 }
 
